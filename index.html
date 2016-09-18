@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Analysis of Exponential Distribution</title>
   <meta charset="utf-8">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Analysis of Exponential Distribution">
+  <meta name="author" content="Thammanoon Kawinfruangfukul">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -32,9 +32,9 @@
     <!-- LOGO SLIDE -->
         <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
-    <h1></h1>
+    <h1>Analysis of Exponential Distribution</h1>
     <h2></h2>
-    <p><br/></p>
+    <p>Thammanoon Kawinfruangfukul<br/></p>
   </hgroup>
   <article></article>  
 </slide>
@@ -43,14 +43,18 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Read-And-Delete</h2>
+    <h2>Motivation</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
-</ol>
+    <p>My Shiny application is motivated by <a href="https://github.com/cobu2b/statinference-project/blob/master/partI.pdf">the Coursera&#39;s Statistical Inference class project</a>. The class assignment generates sample popultion based on average of 40 exponentials; however, the size of the exponentials is fixed. This application allows us to explore an effect of the size of exponentials.</p>
+
+<h2>Introduction</h2>
+
+<p>The application allows us to adjust the size of the samples used for calculating their mean in order to represent sample population. We can compare sample and theoretical means and variances of the exponential distribution based on the different sizes. Central Limit Theorem can be used to explain the distributions.</p>
+
+<h2>Research Question</h2>
+
+<p>What is an effect of the sample and theoretical means and variances of the exponential distribution based on the different sizes of exponentials?</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -58,10 +62,51 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>Central Limit Theorem (CLT)</h2>
   </hgroup>
   <article data-timings="">
-    
+    <p>The <a href="http://www.math.uah.edu/stat/sample/CLT.html">central limit theorem</a> states that the distribution of the sum (or average) of a large number of independent, identically distributed variables will be approximately normal, regardless of the underlying distribution.</p>
+
+<h2>Simulation</h2>
+
+<p>The Shiny application generates 1,000 means of the given size of exponentials assigned by the slider input for representing sample population. This simulation can help us understand how CLT works in action.</p>
+
+<pre><code class="r">  means &lt;- reactive({
+    set.seed(952)
+    means &lt;- NULL
+    for (i in 1 : simulations) {
+      means = c(means, mean(rexp(input$exps, lambda)))
+    }
+    means
+  })
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Experiment</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This experiment performs differences of the sample and theoretical means and variances of the exponential distribution based on the different sizes of exponentials from 1 to 50.</p>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Summary</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>When the size of exponentials increases, the distribution will be closer to the normal distribution. Having larger size of exponentials will make the sample mean be closer to the population mean, so it will help the sample variance be closer to the population variance and the normal distribution.</p>
+
+<p>Fig 1A and 1B show that the differences of the sample and theoretical means and variances are close to 0 when the size of exponentials increases. The Shiny application helps us visualize the experiment clearly. These allow us understand how CLT works in action.</p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -72,14 +117,26 @@
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Read-And-Delete'>
+        data-slide=1 title='Motivation'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 2'>
+        data-slide=2 title='Central Limit Theorem (CLT)'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Experiment'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Summary'>
+         4
       </a>
     </li>
   </ul>
